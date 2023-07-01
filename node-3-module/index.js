@@ -9,6 +9,7 @@ const app = express()
 
 app.set('view engine', 'ejs')
 app.set('views', 'pages')
+app.use(express.json())
 
 app.use(express.static(path.resolve(__dirname, 'public')))
 app.use(express.urlencoded({
@@ -32,14 +33,13 @@ app.post('/', async (req, res)=>{
     })
 })
 app.put('/:id', async (req, res)=>{
-   await redactNotes(req.params.id)
-    console.log(req.body)
-    // await addNote(req.body.title)
-    // res.render('index', {
-    //     title: 'Express App',
-    //     notes: await getNotes(),
-    //     created: true
-    // })
+    console.log(req.params)
+   await redactNotes(req.params.id, req.body.title)
+    res.render('index', {
+        title: 'Express App',
+        notes: await getNotes(),
+        created: true
+    })
 })
 
 app.delete('/:id', async (req, res) => {

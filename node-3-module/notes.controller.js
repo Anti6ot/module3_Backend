@@ -18,13 +18,15 @@ async function getNotes() {
     return Array.isArray(JSON.parse(notes)) ? JSON.parse(notes) : []
 }
 
-async function redactNotes(id, title) {
-    console.log(title)
+async function redactNotes(id, msg) {
     const notes = await getNotes()
-    const index = notes.findIndex(el => +el.id === id )
-    const redArr = notes.map(note => note.id === id)
-    // await fs.writeFile('./db.json', JSON.stringify(notes))
-    // console.log("redArr", redArr)
+  notes.forEach(note => {
+        if(note.id === id) {
+            note.id = id
+            note.title = msg
+        }
+        })
+    await fs.writeFile('./db.json', JSON.stringify(notes))
 }
 
 async function printNotes() {
