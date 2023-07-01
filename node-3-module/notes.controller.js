@@ -18,6 +18,15 @@ async function getNotes() {
     return Array.isArray(JSON.parse(notes)) ? JSON.parse(notes) : []
 }
 
+async function redactNotes(id, title) {
+    console.log(title)
+    const notes = await getNotes()
+    const index = notes.findIndex(el => +el.id === id )
+    const redArr = notes.map(note => note.id === id)
+    // await fs.writeFile('./db.json', JSON.stringify(notes))
+    // console.log("redArr", redArr)
+}
+
 async function printNotes() {
    const notes =  await getNotes()
 
@@ -36,5 +45,5 @@ async function removeNote(id) {
 }
 
 module.exports = {
-    addNote, printNotes,removeNote, getNotes
+    addNote, printNotes,removeNote, getNotes, redactNotes
 }
