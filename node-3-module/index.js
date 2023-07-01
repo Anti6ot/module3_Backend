@@ -31,6 +31,14 @@ app.post('/', async (req, res)=>{
         created: true
     })
 })
+app.put('/', async (req, res)=>{
+    await addNote(req.body.title)
+    res.render('index', {
+        title: 'Express App',
+        notes: await getNotes(),
+        created: true
+    })
+})
 
 app.delete('/:id', async (req, res) => {
    await removeNote(req.params.id)

@@ -10,13 +10,13 @@ document.addEventListener('click', event=>{
         const id = event.target.dataset.id
         const redactText = prompt('введите новое название')
         console.log(redact)
-        redact(id )
+        redact(id, redactText)
     }
 })
 
 async function remove(id) {
     await fetch(`/${id}`, {method: 'DELETE' })
 }
-async function redact(id ,msg) {
+async function redact(id, msg) {
     await fetch(`/${id}`, {method: 'PUT'})
 }
