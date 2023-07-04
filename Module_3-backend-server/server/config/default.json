@@ -1,4 +1,4 @@
 {
   "port": 8080,
-  "mongoUri": ""
+  "mongoUri": "mongodb+srv://lilapanics:Perfeo113@cluster0.ovefmxn.mongodb.net/app?retryWrites=true&w=majority"
 }
